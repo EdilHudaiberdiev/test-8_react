@@ -27,6 +27,7 @@ const Home = () => {
 
   const fetchData = async (url: string) => {
 
+    setLoading(true);
     const quotesArray: IQuotes[] = [];
     const response = await axiosApi.get(url);
     const quotes: {[key: string]: IQuotes} = response.data;
@@ -43,6 +44,7 @@ const Home = () => {
       }
       setQuotes(quotesArray);
     }
+      setLoading(false);
   };
 
   useEffect(() => {
@@ -70,16 +72,16 @@ const Home = () => {
   return (
     <>
       <div>
-        <NavLink to={`/`}>All</NavLink>
+        <NavLink className="link-dark" to={`/`}>All</NavLink>
       </div>
 
       {categories.map(category => (
         <div key={category.id}>
-          <NavLink to={`/quotes/${category.id}`}>{category.title}</NavLink>
+          <NavLink className="link-dark" to={`/quotes/${category.id}`}>{category.title}</NavLink>
         </div>
       ))}
 
-      <div className='w-75 mx-auto'>
+      <div className='w-75'>
         {loading ? <Spinner/> :
           <>
             {quotes.length > 0 ?
