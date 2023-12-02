@@ -2,12 +2,6 @@ import {useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import axiosApi from "../../axiosApi";
 
-interface Props {
-  text: string,
-  author: string,
-  category: string,
-}
-
 const AddQuotes = () => {
   const Navigation = useNavigate();
   const categories = [
@@ -17,7 +11,7 @@ const AddQuotes = () => {
     {title: 'Famous people', id: 'famous-people'},
     {title: 'Harry Potter', id: 'harry-potter'},
   ];
-  const [quote, setQuote] = useState<Props>({
+  const [quote, setQuote] = useState<IQuoteSendForm>({
     text: '',
     author: '',
     category: '',
